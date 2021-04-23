@@ -52,18 +52,18 @@ find_base_commit() {
     BASE_COMMIT=$(
         jq \
             --raw-output \
-            .pull_request.base.sha \
+            .check_suite.pull_requests[0].base.sha \  #  .pull_request.base.sha \
             "$GITHUB_EVENT_PATH"
     )
     # If this is not a pull request action it can be a check suite re-requested
-    if [ "$BASE_COMMIT" == null ]; then
-        BASE_COMMIT=$(
-            jq \
-                --raw-output \
-                .check_suite.pull_requests[0].base.sha \
-                "$GITHUB_EVENT_PATH"
-        )
-    fi
+#    if [ "$BASE_COMMIT" == null ]; then
+#        BASE_COMMIT=$(
+#            jq \
+#                --raw-output \
+#                .check_suite.pull_requests[0].base.sha \
+#                "$GITHUB_EVENT_PATH"
+#        )
+#    fi
 }
 
 find_base_commit
