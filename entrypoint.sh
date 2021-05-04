@@ -53,7 +53,7 @@ find_base_commit() {
         jq \
             --raw-output \
             .pull_request.base.sha \
-            "$GITHUB_EVENT_PATH"
+            $GITHUB_EVENT_PATH
     )
 }
 
