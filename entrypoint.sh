@@ -98,125 +98,126 @@ main() {
                 "$BASE_COMMIT" | grep '\.py$' | grep 'python3' | tr '\n' ' '
         )
         echo "New python3 files in branch: $new_python_files_in_branch"
-    fi
 
 
-    if [ "$2" = true ] ; then
+        if [ "$2" = true ] ; then
 
-        echo Running: pylint ${10} $new_python_files_in_branch
+            echo Running: pylint ${10} $new_python_files_in_branch
 
-        $CONDA/bin/pylint --output-format="colorized" ${10} $new_python_files_in_branch
-        exit_code=$?
+            $CONDA/bin/pylint --output-format="colorized" ${10} $new_python_files_in_branch
+            exit_code=$?
 
-        if [ "$exit_code" = "0" ]; then
-            echo "Pylint ok"
-        else
-            echo "Pylint error"
+            if [ "$exit_code" = "0" ]; then
+                echo "Pylint ok"
+            else
+                echo "Pylint error"
+            fi
+
         fi
 
-    fi
+        if [ "$3" = true ] ; then
 
-    if [ "$3" = true ] ; then
+            echo Running: pycodestyle ${11} $new_python_files_in_branch
 
-        echo Running: pycodestyle ${11} $new_python_files_in_branch
+            $CONDA/bin/pycodestyle ${11} $new_python_files_in_branch
+            exit_code=$?
 
-        $CONDA/bin/pycodestyle ${11} $new_python_files_in_branch
-        exit_code=$?
+            if [ "$exit_code" = "0" ]; then
+                echo "pycodestyle ok"
+            else
+                echo "pycodestyle error"
+            fi
 
-        if [ "$exit_code" = "0" ]; then
-            echo "pycodestyle ok"
-        else
-            echo "pycodestyle error"
         fi
 
-    fi
+        if [ "$4" = true ] ; then
 
-    if [ "$4" = true ] ; then
+            echo Running: flake8 ${12} $new_python_files_in_branch
 
-        echo Running: flake8 ${12} $new_python_files_in_branch
+            $CONDA/bin/flake8 ${12} $new_python_files_in_branch
+            exit_code=$?
 
-        $CONDA/bin/flake8 ${12} $new_python_files_in_branch
-        exit_code=$?
+            if [ "$exit_code" = "0" ]; then
+                echo "Flake8 ok"
+            else
+                echo "Flake8 error"
+            fi
 
-        if [ "$exit_code" = "0" ]; then
-            echo "Flake8 ok"
-        else
-            echo "Flake8 error"
         fi
 
-    fi
+        if [ "$5" = true ] ; then
 
-    if [ "$5" = true ] ; then
+            echo Running: black --check ${13} $new_python_files_in_branch
 
-        echo Running: black --check ${13} $new_python_files_in_branch
+            $CONDA/bin/black --check ${13} $new_python_files_in_branch
+            exit_code=$?
 
-        $CONDA/bin/black --check ${13} $new_python_files_in_branch
-        exit_code=$?
+            if [ "$exit_code" = "0" ]; then
+                echo "Black ok"
+            else
+                echo "Black error"
+            fi
 
-        if [ "$exit_code" = "0" ]; then
-            echo "Black ok"
-        else
-            echo "Black error"
         fi
 
-    fi
+        if [ "$6" = true ] ; then
 
-    if [ "$6" = true ] ; then
+            echo Running: mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
 
-        echo Running: mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
+            $CONDA/bin/mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
+            exit_code=$?
 
-        $CONDA/bin/mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
-        exit_code=$?
+            if [ "$exit_code" = "0" ]; then
+                echo "mypy ok"
+            else
+                echo "mypy error"
+            fi
 
-        if [ "$exit_code" = "0" ]; then
-            echo "mypy ok"
-        else
-            echo "mypy error"
         fi
 
-    fi
+        if [ "$7" = true ] ; then
 
-    if [ "$7" = true ] ; then
+            echo Running: isort ${15} $new_python_files_in_branch -c --diff
 
-        echo Running: isort ${15} $new_python_files_in_branch -c --diff
+            $CONDA/bin/isort ${15} $new_python_files_in_branch -c --diff
+            exit_code=$?
 
-        $CONDA/bin/isort ${15} $new_python_files_in_branch -c --diff
-        exit_code=$?
+            if [ "$exit_code" = "0" ]; then
+                echo "isort ok"
+            else
+                echo "isort error"
+            fi
 
-        if [ "$exit_code" = "0" ]; then
-            echo "isort ok"
-        else
-            echo "isort error"
         fi
 
-    fi
+        if [ "$8" = true ] ; then
 
-    if [ "$8" = true ] ; then
+            echo Running: vulture ${16} $new_python_files_in_branch
 
-        echo Running: vulture ${16} $new_python_files_in_branch
+            $CONDA/bin/vulture ${16} $new_python_files_in_branch
+            exit_code=$?
 
-        $CONDA/bin/vulture ${16} $new_python_files_in_branch
-        exit_code=$?
+            if [ "$exit_code" = "0" ]; then
+                echo "vulture ok"
+            else
+                echo "vulture error"
+            fi
 
-        if [ "$exit_code" = "0" ]; then
-            echo "vulture ok"
-        else
-            echo "vulture error"
         fi
 
-    fi
+        if [ "$9" = true ] ; then
 
-    if [ "$9" = true ] ; then
+            echo Running: pydocstyle ${17} $new_python_files_in_branch
 
-        echo Running: pydocstyle ${17} $new_python_files_in_branch
+            $CONDA/bin/pydocstyle ${17} $new_python_files_in_branch
+            exit_code=$?
 
-        $CONDA/bin/pydocstyle ${17} $new_python_files_in_branch
-        exit_code=$?
+            if [ "$exit_code" = "0" ]; then
+                echo "pycodestyle ok"
+            else
+                echo "pycodestyle error"
+            fi
 
-        if [ "$exit_code" = "0" ]; then
-            echo "pycodestyle ok"
-        else
-            echo "pycodestyle error"
         fi
 
     fi
