@@ -68,7 +68,7 @@ main() {
         git diff \
             --name-only \
             --diff-filter=AM \
-            "master"
+            $BASE_COMMIT
     )
     new_files_in_branch1=$(echo $new_files_in_branch | tr '\n' ' ')
 
