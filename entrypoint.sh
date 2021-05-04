@@ -72,6 +72,7 @@ main() {
 #        echo -e "Not interested in this event: $ACTION.\nExiting..."
 #        exit
 #    fi
+    echo $(jq --raw-output . "$GITHUB_EVENT_PATH")
 
     find_base_commit
 
