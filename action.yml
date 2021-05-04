@@ -88,6 +88,7 @@ runs:
     - run: |
         $CONDA/bin/python --version
         $CONDA/bin/pip install -r ${{ github.action_path }}/requirements.txt
+        $CONDA/bin/apk add --no-cache git bash jq curl
       shell: bash
       name: Install linters
     - run: >
