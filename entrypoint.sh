@@ -68,11 +68,10 @@ main() {
     export TERM=xterm
 
 
-#    if [[ $ENABLED_ACTIONS != *"$ACTION"* ]]; then
-#        echo -e "Not interested in this event: $ACTION.\nExiting..."
-#        exit
-#    fi
-    echo $(jq --raw-output . "$GITHUB_EVENT_PATH")
+    if [[ $ENABLED_ACTIONS != *"$ACTION"* ]]; then
+        echo -e "Not interested in this event: $ACTION.\nExiting..."
+        exit
+    fi
 
     find_base_commit
 
