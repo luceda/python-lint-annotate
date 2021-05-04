@@ -59,12 +59,14 @@ find_base_commit() {
 
 find_base_commit
 
+echo $BASE_COMMIT
+
 # Find adjusted files in PR:
 new_files_in_branch=$(
     git diff \
         --name-only \
         --diff-filter=AM \
-        "$BASE_COMMIT"
+        $BASE_COMMIT
 )
 new_files_in_branch1=$(echo $new_files_in_branch | tr '\n' ' ')
 
