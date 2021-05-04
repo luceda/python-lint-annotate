@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# if a command fails, exit
+set -e
+# treat unset variables as error
+set -u
+# if any command in a pipe fails, fail
+set -o pipefail
+# print all debug information
+set -x
+
+
 find_base_commit() {
     BASE_COMMIT=$(
         jq \
@@ -68,7 +78,7 @@ main() {
         git diff \
             --name-only \
             --diff-filter=AM \
-            $BASE_COMMIT
+            "$BASE_COMMIT"
     )
     new_files_in_branch1=$(echo $new_files_in_branch | tr '\n' ' ')
 
