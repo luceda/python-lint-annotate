@@ -83,9 +83,7 @@ runs:
     - run: |
         $CONDA/bin/conda --version
         $CONDA/bin/conda install python=${{ inputs.conda-python-version }}
-        $CONDA/bin/conda install -c anaconda git 
-        $CONDA/bin/conda install -c conda-forge jq
-        $CONDA/bin/conda install -c conda-forge curl
+        sudo apt-get install --no-install-recommends -y git jq curl
       shell: bash
       name: Install linters
     - run: |
