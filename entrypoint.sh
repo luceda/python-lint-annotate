@@ -134,7 +134,10 @@ main() {
 
             echo Running: flake8 ${12} $new_python_files_in_branch
 
-            $CONDA/bin/flake8 ${12} $new_python_files_in_branch
+            export IFS=' '
+            for file in $new_python_files_in_branch; do
+              $CONDA/bin/flake8 ${12} $file
+            done
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -163,8 +166,9 @@ main() {
         if [ "$6" = true ] ; then
 
             echo Running: mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
-
-            $CONDA/bin/mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
+            for file in $new_python_files_in_branch; do
+                $CONDA/bin/mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $file
+            done
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
