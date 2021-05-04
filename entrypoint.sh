@@ -9,6 +9,10 @@ set -o pipefail
 # print all debug information
 set -x
 
+if [[ -z "$GITHUB_EVENT_PATH" ]]; then
+  echo "Set the GITHUB_EVENT_PATH env variable."
+  exit 1
+fi
 
 find_base_commit() {
     BASE_COMMIT=$(
@@ -68,7 +72,7 @@ main() {
         echo -e "Not interested in this event: $ACTION.\nExiting..."
         exit
     fi
-    
+
     find_base_commit
 
     echo "BASE_COMMIT:"
