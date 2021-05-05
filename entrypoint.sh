@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # if a command fails, exit
-set -e
+#set -e
 # treat unset variables as error
 set -u
 # if any command in a pipe fails, fail
