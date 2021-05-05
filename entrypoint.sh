@@ -38,7 +38,7 @@ ENABLED_ACTIONS='synchronize opened requested rerequested'
 
 main() {
 
-    echo python-root-list:          $1  # useless now, replaced by $new_python_files_in_branch
+    echo python3-root-folder:       $1
     echo use-pylint:                $2
     echo use-pycodestyle:           $3
     echo use-flake8:                $4
@@ -93,9 +93,9 @@ main() {
             git diff \
                 --name-only \
                 --diff-filter=AM \
-                "$BASE_COMMIT" | grep '\.py$' | grep 'python3' | tr '\n' ' '
+                "$BASE_COMMIT" | grep '\.py$' | grep "$1" | tr '\n' ' '
         )
-        echo "New python3 files in branch: $new_python_files_in_branch"
+        echo "New $1 files in branch: $new_python_files_in_branch"
 
 
         if [ "$2" = true ] ; then
