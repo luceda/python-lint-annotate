@@ -7,10 +7,10 @@
         {
           "regexp": "^([^:]*):(\\d+):(?:(\\d+):)? error: (.*?)(?:  \\[(\\S+)\\])?$",
           "file": 1,
-          "column": 3,
           "line": 2,
-          "severity": 4,
-          "message": 5
+          "column": 3,
+          "message": 4,
+          "code": 5
         }
       ]
     }
