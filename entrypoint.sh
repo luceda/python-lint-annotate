@@ -88,6 +88,9 @@ main() {
     echo "New files in branch: $new_files_in_branch1"
     # Feed to flake8 which will return the output in json format.
     # shellcheck disable=SC2086
+
+    n_errors=0
+
     if [[ $new_files_in_branch =~ .*".py".* ]]; then
         new_python_files_in_branch=$(
             git diff \
@@ -109,6 +112,7 @@ main() {
                 echo "Pylint ok"
             else
                 echo "Pylint error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
@@ -124,6 +128,7 @@ main() {
                 echo "pycodestyle ok"
             else
                 echo "pycodestyle error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
@@ -138,6 +143,7 @@ main() {
                 echo "Flake8 ok"
             else
                 echo "Flake8 error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
@@ -153,6 +159,7 @@ main() {
                 echo "Black ok"
             else
                 echo "Black error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
@@ -167,6 +174,7 @@ main() {
                 echo "mypy ok"
             else
                 echo "mypy error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
@@ -182,6 +190,7 @@ main() {
                 echo "isort ok"
             else
                 echo "isort error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
@@ -197,6 +206,7 @@ main() {
                 echo "vulture ok"
             else
                 echo "vulture error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
@@ -212,10 +222,15 @@ main() {
                 echo "pycodestyle ok"
             else
                 echo "pycodestyle error"
+                n_errors=$((n_errors+1))
             fi
 
         fi
 
+    fi
+
+    if [ "$n_errors" -gt 0 ]; then
+        raise error "$n_errors error(s) in total. Please fix them before merging this pull request."
     fi
 }
 
