@@ -230,7 +230,8 @@ main() {
     fi
 
     if [ "$n_errors" -gt 0 ]; then
-        raise error "$n_errors error(s) in total. Please fix them before merging this pull request."
+        echo "$n_errors error(s) in total. Please fix them before merging this pull request."
+        exit 1
     fi
 }
 
