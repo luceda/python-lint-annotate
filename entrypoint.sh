@@ -99,8 +99,9 @@ main() {
                 "$BASE_COMMIT" | grep '\.py$' | grep "$1" | tr '\n' ' '
         )
         echo "New $1 files in branch: $new_python_files_in_branch"
+    fi
 
-
+    if [[ $new_python_files_in_branch =~ .*".py".* ]]; then
         if [ "$2" = true ] ; then
 
             echo Running: pylint ${10} $new_python_files_in_branch
