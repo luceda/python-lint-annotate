@@ -38,7 +38,7 @@ ENABLED_ACTIONS='synchronize opened requested rerequested'
 
 main() {
 
-    echo python3-root-folder:       $1
+    echo pdkbuilding-root-folder:   $1
     echo use-pylint:                $2
     echo use-pycodestyle:           $3
     echo use-flake8:                $4
