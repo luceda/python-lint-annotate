@@ -4,10 +4,10 @@ branding:
   icon: "alert-triangle"
   color: "yellow"
 inputs:
-  python-root-list:
-    description: "A list of all paths to test"
+  python3-root-folder:
+    description: "The name of the folder that contains python 3 files"
     required: false
-    default: "'./**/*.py'"
+    default: "python3"
   use-pylint:
     description: "Use Pylint"
     required: false
@@ -41,35 +41,35 @@ inputs:
     required: false
     default: true
   extra-pylint-options:
-    description: "Extra options: pylint $(extra-pylint-options) $(python-root-list)"
+    description: "Extra options: pylint $(extra-pylint-options) $(python3-root-folder)"
     required: false
     default: ""
   extra-pycodestyle-options:
-    description: "Extra options: pycodestyle $(extra-pycodestyle-options) $(python-root-list)"
+    description: "Extra options: pycodestyle $(extra-pycodestyle-options) $(python3-root-folder)"
     required: false
     default: ""
   extra-flake8-options:
-    description: "Extra options: flake8 $(extra-flake8-options) $(python-root-list)"
+    description: "Extra options: flake8 $(extra-flake8-options) $(python3-root-folder)"
     required: false
     default: ""
   extra-black-options:
-    description: "Extra options: black --check $(extra-black-options) $(python-root-list)"
+    description: "Extra options: black --check $(extra-black-options) $(python3-root-folder)"
     required: false
     default: ""
   extra-mypy-options:
-    description: "Extra options: mypy $(extra-mypy-options) $(python-root-list)"
+    description: "Extra options: mypy $(extra-mypy-options) $(python3-root-folder)"
     required: false
     default: ""
   extra-isort-options:
-    description: "Extra options: isort -rc $(extra-isort-options) $(python-root-list) -c --diff "
+    description: "Extra options: isort -rc $(extra-isort-options) $(python3-root-folder) -c --diff "
     required: false
     default: ""
   extra-vulture-options:
-    description: "Extra options: vulture $(extra-vulture-options) $(python-root-list)"
+    description: "Extra options: vulture $(extra-vulture-options) $(python3-root-folder)"
     required: false
     default: ""
   extra-pydocstyle-options:
-    description: "Extra options: pydocstyle $(extra-pydocstyle-options) $(python-root-list)"
+    description: "Extra options: pydocstyle $(extra-pydocstyle-options) $(python3-root-folder)"
     required: false
     default: ""
   conda-python-version:
@@ -83,6 +83,7 @@ runs:
     - run: |
         $CONDA/bin/conda --version
         $CONDA/bin/conda install python=${{ inputs.conda-python-version }}
+        sudo apt-get install --no-install-recommends -y git jq curl
       shell: bash
       name: Install linters
     - run: |
@@ -92,7 +93,7 @@ runs:
       name: Install linters
     - run: >
         ${{ github.action_path }}/entrypoint.sh
-        '${{ inputs.python-root-list }}'
+        '${{ inputs.python3-root-folder }}'
         ${{ inputs.use-pylint }}
         ${{ inputs.use-pycodestyle }}
         ${{ inputs.use-flake8 }}
