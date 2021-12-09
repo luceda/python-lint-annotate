@@ -93,7 +93,7 @@ runs:
       name: Install linters
     - run: >
         ${{ github.action_path }}/entrypoint.sh
-        '${{ inputs.pdkbuilding-root-folder }}'
+        '${{ inputs.ipmanager-root-folder }}'
         ${{ inputs.use-pylint }}
         ${{ inputs.use-pycodestyle }}
         ${{ inputs.use-flake8 }}
