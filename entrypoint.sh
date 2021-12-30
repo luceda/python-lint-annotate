@@ -92,11 +92,9 @@ main() {
     n_errors=0
 
     if [[ $new_files_in_branch =~ .*".py".* ]]; then
+        pattern=$(echo $1 | tr -s ' ' '\|')
         new_python_files_in_branch=$(
-            git diff \
-                --name-only \
-                --diff-filter=AM \
-                "$BASE_COMMIT" | grep '\.py$' | grep "$1" | tr '\n' ' '
+            echo $new_files_in_branch | grep '\.py$' | grep "${pattern}" | tr '\n' ' '
         )
         echo "New $1 files in branch: $new_python_files_in_branch"
     else
