@@ -94,7 +94,7 @@ main() {
     if [[ $new_files_in_branch =~ .*".py".* ]]; then
         pattern=$(echo $1 | tr -s ' ' '\|')
         new_python_files_in_branch=$(
-            echo $new_files_in_branch | grep -E '.py$' | grep -E "${pattern}"
+            echo "$new_files_in_branch" | grep -E '.py$' | grep -E "${pattern}"
         )
         echo "New $1 files in branch: $new_python_files_in_branch"
     else
