@@ -4,5 +4,5 @@ isort==5.7.0
 mypy==0.800
 pycodestyle==2.7.0
 pydocstyle==5.1.1
-pylint==2.6.0
+pylint==2.12
 vulture==2.3
