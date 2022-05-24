@@ -152,9 +152,9 @@ main() {
 
         if [ "$5" = true ] ; then
 
-            echo Running: black --check ${13} $new_python_files_in_branch
+            echo Running: black --check --verbose ${13} $new_python_files_in_branch
 
-            $CONDA/bin/black --check ${13} $new_python_files_in_branch
+            $CONDA/bin/black --check --verbose ${13} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
