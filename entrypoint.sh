@@ -76,6 +76,8 @@ main() {
     echo "BASE_COMMIT:"
     echo $BASE_COMMIT
 
+    git fetch --all
+
     # Find adjusted files in PR:
     new_files_in_branch=$(
         git diff \
