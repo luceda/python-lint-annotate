@@ -92,16 +92,19 @@ runs:
           git
           jq
           curl
+          black=22.3.0
+          flake8=3.9.1
+          isort=5.7.0
+          mypy=0.800
+          pycodestyle=2.7.0
+          pydocstyle=5.1.1
+          pylint=2.12
+          vulture=2.3
           python=${{ inputs.conda-python-version }}
     - run: |
         micromamba info
       shell: bash
       name: micromamba info
-    - run: |
-        $CONDA/bin/python --version
-        $CONDA/bin/pip install -r ${{ github.action_path }}/requirements.txt
-      shell: bash
-      name: Install linters
     - run: >
         ${{ github.action_path }}/entrypoint.sh
         '${{ inputs.python3-root-folder }}'
