@@ -86,15 +86,14 @@ runs:
         environment-file: false
         environment-name: base
         channels: conda-forge
-        extra-specs: |
-          git
-          jq
-          curl
-          python=${{ inputs.conda-python-version }}
     - run: |
         micromamba info
       shell: bash
       name: micromamba info
+    - run: |
+        micromamba install -c conda-forge -y -n base git jq curl python=${{ inputs.conda-python-version }}
+      shell: bash
+      name: Install Dependencies
     - run: |
         $CONDA/bin/python --version
         $CONDA/bin/pip install -r ${{ github.action_path }}/requirements.txt
