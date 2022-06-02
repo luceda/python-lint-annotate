@@ -80,12 +80,20 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Install Conda environment from environment.yml
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: myenv.yaml
+        environment-name: myenvname
+        extra-specs: |
+          git
+          jq
+          curl
+          python=${{ inputs.conda-python-version }}
     - run: |
-        $CONDA/bin/conda --version
-        $CONDA/bin/conda install python=${{ inputs.conda-python-version }}
-        sudo apt-get install --no-install-recommends -y git jq curl
+        micromamba info
       shell: bash
-      name: Install linters
+      name: micromamba info
     - run: |
         $CONDA/bin/python --version
         $CONDA/bin/pip install -r ${{ github.action_path }}/requirements.txt
