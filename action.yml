@@ -84,16 +84,18 @@ runs:
       uses: luceda/provision-with-micromamba@main
       with:
         environment-file: false
-        environment-name: base
+        environment-name: lintpy3
         channels: conda-forge
+        cache-env: true
+        extra-specs: |
+          git
+          jq
+          curl
+          python=${{ inputs.conda-python-version }}
     - run: |
         micromamba info
       shell: bash
       name: micromamba info
-    - run: |
-        micromamba install -c conda-forge -y -n base git jq curl python=${{ inputs.conda-python-version }}
-      shell: bash
-      name: Install Dependencies
     - run: |
         $CONDA/bin/python --version
         $CONDA/bin/pip install -r ${{ github.action_path }}/requirements.txt
