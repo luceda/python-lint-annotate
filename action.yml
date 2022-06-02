@@ -86,8 +86,8 @@ runs:
         environment-file: false
         environment-name: lintpy3
         channels: conda-forge
-        cache-env: true
-        cache-env-key: ${{ inputs.conda-python-version }}
+          #cache-env: true
+          #cache-env-key: ${{ inputs.conda-python-version }}
         extra-specs: |
           git
           jq
