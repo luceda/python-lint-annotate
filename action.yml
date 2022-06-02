@@ -99,7 +99,7 @@ runs:
           pycodestyle=2.7.0
           pydocstyle=5.1.1
           pylint=2.12
-          vulture=2.3
+          vulture=2.4
           python=${{ inputs.conda-python-version }}
     - run: |
         micromamba info
