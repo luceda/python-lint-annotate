@@ -83,8 +83,6 @@ runs:
     - name: Install Conda environment from environment.yml
       uses: luceda/provision-with-micromamba@main
       with:
-        environment-file: myenv.yaml
-        environment-name: myenvname
         extra-specs: |
           git
           jq
