@@ -81,7 +81,7 @@ runs:
   using: "composite"
   steps:
     - name: Install Conda environment from environment.yml
-      uses: mamba-org/provision-with-micromamba@main
+      uses: luceda/provision-with-micromamba@main
       with:
         environment-file: myenv.yaml
         environment-name: myenvname
