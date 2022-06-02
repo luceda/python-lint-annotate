@@ -84,6 +84,7 @@ runs:
       uses: luceda/provision-with-micromamba@main
       with:
         environment-file: false
+        environment-name: base
         channels: conda-forge
         extra-specs: |
           git
