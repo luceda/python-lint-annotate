@@ -109,7 +109,7 @@ main() {
 
             echo Running: pylint ${10} $new_python_files_in_branch
 
-            $CONDA/bin/pylint --output-format="colorized" ${10} $new_python_files_in_branch
+            pylint --output-format="colorized" ${10} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -125,7 +125,7 @@ main() {
 
             echo Running: pycodestyle ${11} $new_python_files_in_branch
 
-            $CONDA/bin/pycodestyle ${11} $new_python_files_in_branch
+            pycodestyle ${11} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -140,7 +140,7 @@ main() {
         if [ "$4" = true ] ; then
 
             echo Running: flake8 ${12} $new_python_files_in_branch
-            $CONDA/bin/flake8 ${12} $new_python_files_in_branch
+            flake8 ${12} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -156,7 +156,7 @@ main() {
 
             echo Running: black --check --verbose ${13} $new_python_files_in_branch
 
-            $CONDA/bin/black --check --verbose ${13} $new_python_files_in_branch
+            black --check --verbose ${13} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -171,7 +171,7 @@ main() {
         if [ "$6" = true ] ; then
 
             echo Running: mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
-            $CONDA/bin/mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
+            mypy --ignore-missing-imports --follow-imports=silent --show-column-numbers ${14} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -187,7 +187,7 @@ main() {
 
             echo Running: isort ${15} $new_python_files_in_branch -c --diff
 
-            $CONDA/bin/isort ${15} $new_python_files_in_branch -c --diff
+            isort ${15} $new_python_files_in_branch -c --diff
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -203,7 +203,7 @@ main() {
 
             echo Running: vulture ${16} $new_python_files_in_branch
 
-            $CONDA/bin/vulture ${16} $new_python_files_in_branch
+            vulture ${16} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
@@ -219,7 +219,7 @@ main() {
 
             echo Running: pydocstyle ${17} $new_python_files_in_branch
 
-            $CONDA/bin/pydocstyle ${17} $new_python_files_in_branch
+            pydocstyle ${17} $new_python_files_in_branch
             exit_code=$?
 
             if [ "$exit_code" = "0" ]; then
