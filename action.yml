@@ -101,10 +101,6 @@ runs:
           pylint=2.12
           vulture=2.4
           python=${{ inputs.conda-python-version }}
-    - run: |
-        micromamba info && micromamba list
-      shell: bash
-      name: micromamba info
     - run: >
         ${{ github.action_path }}/entrypoint.sh
         '${{ inputs.python3-root-folder }}'
@@ -124,5 +120,5 @@ runs:
         '${{ inputs.extra-isort-options }}'
         '${{ inputs.extra-vulture-options }}'
         '${{ inputs.extra-pydocstyle-options }}'
-      shell: bash
+      shell: bash -l {0}
       name: Lint
