@@ -80,17 +80,31 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Install Conda environment from environment.yml
+      uses: luceda/provision-with-micromamba@main
+      with:
+        environment-file: false
+        environment-name: lintpy3
+        channels: conda-forge
+        cache-env: true
+        cache-env-key: ${{ inputs.conda-python-version }}
+        extra-specs: |
+          git
+          jq
+          curl
+          black=22.3.0
+          flake8=3.9.1
+          isort=5.7.0
+          mypy=0.800
+          pycodestyle=2.7.0
+          pydocstyle=5.1.1
+          pylint=2.12
+          vulture=2.4
+          python=${{ inputs.conda-python-version }}
     - run: |
-        $CONDA/bin/conda --version
-        $CONDA/bin/conda install python=${{ inputs.conda-python-version }}
-        sudo apt-get install --no-install-recommends -y git jq curl
+        micromamba info
       shell: bash
-      name: Install linters
-    - run: |
-        $CONDA/bin/python --version
-        $CONDA/bin/pip install -r ${{ github.action_path }}/requirements.txt
-      shell: bash
-      name: Install linters
+      name: micromamba info
     - run: >
         ${{ github.action_path }}/entrypoint.sh
         '${{ inputs.python3-root-folder }}'
