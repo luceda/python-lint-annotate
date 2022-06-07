@@ -102,7 +102,7 @@ runs:
           vulture=2.4
           python=${{ inputs.conda-python-version }}
     - run: |
-        micromamba info
+        micromamba info && micromamba list
       shell: bash
       name: micromamba info
     - run: >
