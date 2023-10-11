@@ -93,10 +93,10 @@ main() {
 
     n_errors=0
 
-    if [[ $new_files_in_branch =~ .*".py".* ]]; then
+    if [[ $new_files_in_branch =~ .*"\.py".* ]]; then
         pattern=$(echo $1 | tr -s ' ' '\|')
         new_python_files_in_branch=$(
-            echo "$new_files_in_branch" | grep -E '.py$' | grep -E "${pattern}"
+            echo "$new_files_in_branch" | grep -E '\.py$' | grep -E "${pattern}"
         )
         echo "New $1 files in branch: $new_python_files_in_branch"
     else
@@ -104,7 +104,7 @@ main() {
       echo "No new $1 files in branch"
     fi
 
-    if [[ $new_python_files_in_branch =~ .*".py".* ]]; then
+    if [[ $new_python_files_in_branch =~ .*"\.py".* ]]; then
         if [ "$2" = true ] ; then
 
             echo Running: pylint ${10} $new_python_files_in_branch
