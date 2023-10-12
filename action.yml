@@ -92,7 +92,7 @@ runs:
           git
           jq
           curl
-          black=23.3.0
+          black
           flake8=3.9.1
           isort=5.7.0
           mypy=0.800
